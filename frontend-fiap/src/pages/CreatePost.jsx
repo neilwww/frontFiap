@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { usePost } from '../contexts/PostContext.jsx';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import { usePost } from '../contexts/PostContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const Container = styled.div`
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;

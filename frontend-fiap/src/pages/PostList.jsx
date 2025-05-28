@@ -5,9 +5,13 @@ import styled from 'styled-components';
 import { usePost } from '../contexts/PostContext';
 
 const Container = styled.div`
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px); /* Subtrair altura do header */
 `;
 
 const Title = styled.h1`

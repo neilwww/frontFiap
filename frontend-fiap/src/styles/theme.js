@@ -1,4 +1,3 @@
-// styles/theme.js
 const theme = {
   colors: {
     primary: '#4F46E5',

@@ -1,4 +1,3 @@
-// styles/GlobalStyle.js
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -17,6 +16,16 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   code {
@@ -49,8 +58,16 @@ const GlobalStyle = createGlobalStyle`
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    width: 100%;
+  }
+
+  /* Garantir que o conteúdo principal ocupe o espaço disponível */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 `;
 
 export default GlobalStyle;
-

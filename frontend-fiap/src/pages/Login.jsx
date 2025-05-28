@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useAuth } from '../contexts/AuthContext';
 
 const Container = styled.div`
+  width: 100%;
   min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;

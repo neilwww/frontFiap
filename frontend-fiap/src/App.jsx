@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 import { AuthProvider } from './contexts/AuthContext';
@@ -16,6 +17,20 @@ import EditPost from './pages/EditPost';
 import AdminPanel from './pages/AdminPanel';
 import Login from './pages/Login';
 
+const AppContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 function App() {
   useEffect(() => {
     // Habilitar Mock API no desenvolvimento
@@ -28,42 +43,46 @@ function App() {
       <AuthProvider>
         <PostProvider>
           <Router>
-            <Header />
-            <Routes>
-              {/* Páginas públicas */}
-              <Route path="/" element={<PostList />} />
-              <Route path="/post/:id" element={<PostDetail />} />
-              <Route path="/login" element={<Login />} />
-              
-              {/* Páginas protegidas - apenas para professores autenticados */}
-              <Route 
-                path="/create-post" 
-                element={
-                  <ProtectedRoute>
-                    <CreatePost />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/edit-post/:id" 
-                element={
-                  <ProtectedRoute>
-                    <EditPost />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/admin" 
-                element={
-                  <ProtectedRoute>
-                    <AdminPanel />
-                  </ProtectedRoute>
-                } 
-              />
-              
-              {/* Redirect para página principal se rota não existir */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <AppContainer>
+              <Header />
+              <MainContent>
+                <Routes>
+                  {/* Páginas públicas */}
+                  <Route path="/" element={<PostList />} />
+                  <Route path="/post/:id" element={<PostDetail />} />
+                  <Route path="/login" element={<Login />} />
+                  
+                  {/* Páginas protegidas - apenas para professores autenticados */}
+                  <Route 
+                    path="/create-post" 
+                    element={
+                      <ProtectedRoute>
+                        <CreatePost />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/edit-post/:id" 
+                    element={
+                      <ProtectedRoute>
+                        <EditPost />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin" 
+                    element={
+                      <ProtectedRoute>
+                        <AdminPanel />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  
+                  {/* Redirect para página principal se rota não existir */}
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </MainContent>
+            </AppContainer>
           </Router>
         </PostProvider>
       </AuthProvider>
